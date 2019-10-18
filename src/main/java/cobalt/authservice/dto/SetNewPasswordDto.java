@@ -6,19 +6,13 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.time.ZonedDateTime;
+import java.util.UUID;
 
 @Data
 @Builder
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
-public class UserDto {
+public class SetNewPasswordDto {
 
-    private Long id;
-
-    private ZonedDateTime dateCreated;
-
-    private String email;
-
-    private String password;
+    private String newpassword;
 }

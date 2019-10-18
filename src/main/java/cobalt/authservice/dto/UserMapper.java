@@ -7,16 +7,17 @@ public class UserMapper {
     public static UserDto userToDto(User user) {
         return UserDto.builder()
                 .id(user.getId())
-                .userName(user.getUserName())
+                .email(user.getEmail())
+                .password(user.getPassword())
                 .dateCreated(user.getDateCreated())
                 .build();
     }
 
     public static User DtoToUser(UserDto userDto) {
-        return User.builder()
-                .userName(userDto.getUserName())
-                .password(userDto.getPassword())
-                .build();
+        User user = new User();
+        user.setEmail(userDto.getEmail());
+        user.setPassword(userDto.getPassword());
+        return user;
     }
 
 }

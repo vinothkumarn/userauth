@@ -12,13 +12,7 @@ import java.time.ZonedDateTime;
 @Builder
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
-public class UserDto {
-
-    private Long id;
-
-    private ZonedDateTime dateCreated;
+public class ForgotPasswordDto {
 
     private String email;
-
-    private String password;
 }
