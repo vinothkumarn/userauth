@@ -1,5 +1,6 @@
 package cobalt.authservice.controller;
 
+import cobalt.authservice.dto.SetNewPasswordDto;
 import cobalt.authservice.dto.UserDto;
 import cobalt.authservice.entity.AuthToken;
 import cobalt.authservice.service.UserService;
@@ -55,5 +56,24 @@ public class UserControllerTest {
                 .andExpect(content()
                         .contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
                 .andExpect(jsonPath("$.authtoken", is(generatedToken)));
+    }
+
+    @Test
+    public void givenCorrectResetToken_thenShouldSuccessMessage() throws Exception {
+
+        SetNewPasswordDto setNewPasswordDto = SetNewPasswordDto.builder()
+                .newpassword("newpass")
+                .build();
+
+        String resetUrl = UUID.randomUUID().toString();
+        given(userService.resetPassword(resetUrl, setNewPasswordDto))
+                .willReturn(Optional.of("Password reset successfully"));
+        mvc.perform(post("/resetPassword/" + resetUrl)
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(objectMapper.writeValueAsString(setNewPasswordDto)))
+                .andExpect(status().isOk())
+                .andExpect(content()
+                        .contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
+                .andExpect(content().string("\"Password reset successfully\""));
     }
 }
