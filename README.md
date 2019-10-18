@@ -99,3 +99,8 @@ If users click the reset URL, it can be verified using this endpoint.
 
 After resetting, new password can be used for further logins.
 
+
+
+## Other comments
+
+Loggging using slf4j, sending email to users via AWS SES, Validation for email addresses by sending to customers are additional stuffs that can be added to this microservice in future. 
