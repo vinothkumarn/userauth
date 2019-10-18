@@ -34,7 +34,11 @@ public class UserServiceImpl implements UserService {
     public User createUser(User user) {
         // Email validation needed before saving the user
         User savedUser = userRepository.save(user);
-        return savedUser;
+        if (savedUser != null) {
+            return savedUser;
+        } else {
+            throw new IllegalArgumentException("Invalid input data");
+        }
     }
 
     @Override
